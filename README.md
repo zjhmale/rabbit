@@ -1,1 +1,1 @@
-## some stuff to play with rabbitmq and clojure
+some stuff to play with rabbitmq and clojure
