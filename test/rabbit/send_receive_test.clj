@@ -9,4 +9,4 @@
   (testing "send message again"
     (send))
   (testing "receive message"
-    (receive)))
+    (future (receive))))
