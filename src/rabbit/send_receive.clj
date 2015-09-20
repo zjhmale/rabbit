@@ -10,6 +10,8 @@
 
 ;;简单的单个生产者单个消费者模式
 
+(def ^{:const true} queue-name "queue_name")
+
 (defn send []
   (with-open [conn (lc/connect {:host                  config/rabbitmq-host
                                 :port                  config/rabbitmq-port
@@ -18,9 +20,9 @@
                                 :automatically-recover true
                                 :executor              (Executors/newFixedThreadPool config/rabbitmq-thread-number)})]
     (let [ch (lch/open conn)]
-      (lq/declare ch "queue_name" {:durable     false
-                                   :auto-delete false})
-      (lb/publish ch "" "queue_name" (.getBytes "message" "UTF-8"))
+      (lq/declare ch queue-name {:durable     false
+                                 :auto-delete false})
+      (lb/publish ch "" queue-name (.getBytes "message" "UTF-8"))
       (prn " [x] Send 'message'"))))
 
 (defn handle-delivery
@@ -36,7 +38,7 @@
                                 :automatically-recover true
                                 :executor              (Executors/newFixedThreadPool config/rabbitmq-thread-number)})]
     (let [ch (lch/open conn)]
-      (lq/declare ch "queue_name" {:durable     false
-                                   :auto-delete false})
+      (lq/declare ch queue-name {:durable     false
+                                 :auto-delete false})
       (prn " [*] Waiting for messages. To exit press C-c")
-      (lcons/blocking-subscribe ch "queue_name" handle-delivery {:auto-ack true}))))
+      (lcons/blocking-subscribe ch queue-name handle-delivery {:auto-ack true}))))
