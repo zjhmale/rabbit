@@ -3,7 +3,7 @@
             [rabbit.task-worker :refer :all])
   (:refer-clojure :exclude [send]))
 
-(deftest send-receive
+(deftest task-worker
   (testing "send messages"
     (send "First message.")
     (send "Second message..")

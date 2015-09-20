@@ -3,9 +3,8 @@
             [langohr.channel :as lch]
             [langohr.queue :as lq]
             [langohr.basic :as lb]
-            [clojure.string :as s]
-            [rabbit.config :as config]
-            [langohr.consumers :as lcons])
+            [langohr.consumers :as lcons]
+            [rabbit.config :as config])
   (:import (java.util.concurrent Executors))
   (:refer-clojure :exclude [send]))
 

@@ -7,3 +7,7 @@
 * task-worker
 
 ![cleantha](./snapshots/task-worker.png)
+
+* publish-subscribe
+
+![cleantha](./snapshots/publish-subscribe.png)
