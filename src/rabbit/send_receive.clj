@@ -8,6 +8,8 @@
   (:import (java.util.concurrent Executors))
   (:refer-clojure :exclude [send]))
 
+;;简单的单个生产者单个消费者模式
+
 (defn send []
   (with-open [conn (lc/connect {:host                  config/rabbitmq-host
                                 :port                  config/rabbitmq-port

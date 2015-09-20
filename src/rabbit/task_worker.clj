@@ -9,6 +9,8 @@
   (:import (java.util.concurrent Executors))
   (:refer-clojure :exclude [send]))
 
+;;单个生产者多个消费者模式
+
 (def ^{:const true} queue-name "task_queue")
 
 (defn send
