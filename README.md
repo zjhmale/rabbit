@@ -11,3 +11,13 @@
 * publish-subscribe
 
 ![cleantha](./snapshots/publish-subscribe.png)
+
+## issues
+
+* put mockup in clojure.test will cause exception sometimes maybe should put mockup cases in a script file
+
+```
+Uncaught exception, not in assertion.
+expected: nil
+  actual: java.util.concurrent.TimeoutException: null
+```

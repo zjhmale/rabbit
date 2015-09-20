@@ -4,6 +4,8 @@
 
 (deftest publish-subscribe
   (testing "receive log"
+    ;;there is two queue bind to the exchange named logs
+    (future (receive-log))
     (future (receive-log)))
   (testing "emit log"
     (Thread/sleep 3000)

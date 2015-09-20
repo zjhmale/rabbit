@@ -36,7 +36,8 @@
 (defn handle-delivery
   "message handler callback"
   [ch metadata payload]
-  (prn (format " [x] %s" (String. payload "UTF-8"))))
+  (locking *out*
+    (prn (format " [x] %s" (String. payload "UTF-8")))))
 
 (defn receive-log []
   (with-open [conn (lc/connect {:host                  config/rabbitmq-host
@@ -52,5 +53,6 @@
                                    :auto-delete false})
       ;;将队列bind到exchange上
       (lq/bind ch queue exchange-name)
-      (prn " [*] Waiting for logs. To exit press C-c")
+      (locking *out*
+        (prn " [*] Waiting for logs. To exit press C-c"))
       (lcons/blocking-subscribe ch queue handle-delivery))))
